@@ -1,0 +1,129 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for Inter font --><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#dc2626', // Red-600 (previously Indigo-600)
+                        'background': '#fbd9d3', // Gray-50
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for better aesthetics */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: #ef4444; /* Red-500 (previously Indigo-500) */
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-background text-gray-800 min-h-screen pt-16">
+
+    <!-- Fixed Header / Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo / Brand -->
+            <div class="text-2xl font-bold text-primary">
+                FOOD BY MOOD
+            </div>
+
+            <!-- Search Bar -->
+
+            <!-- <div class="relative flex-grow max-w-sm hidden sm:block"> 
+                <input type="text" name="search" id="searchInput" placeholder="Search recipes by name or mood..." class="w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-primary focus:border-primary" >
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" onclick="var context = document.getElementById('searchInput').value; window.location.href='/recipe/' + context;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div> -->
+
+            <!-- Navigation Links (Desktop) -->
+            <div id="nav-menu" class="hidden md:flex space-x-6">
+                <a href="{% url 'home' %}" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Home</a>
+                <a href="{% url 'about' %}" class="text-gray-600 hover:text-primary transition duration-150 font-medium">About Us</a>
+                <a href="{% url 'contact' %}" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Contact Us</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-button" class="md:hidden text-gray-600 hover:text-primary p-2 rounded-lg transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown (Initially hidden) -->
+        <div id="mobile-menu-dropdown" class="md:hidden hidden border-t border-gray-100 pb-2">
+            <a href="{% url 'home' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Home</a>
+            <a href="{% url 'about' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">About Us</a>
+            <a href="{% url 'contact' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Contact Us</a>
+        </div>
+    </header>
+    
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+    {% block content %}{% endblock %}
+    </main>
+    <!-- <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'about' %}">About Us</a>
+    <a href="{% url 'contact' %}">Contact Us</a>
+    
+</body>
+</html> -->
+    <!-- Footer (Replaces the loose links at the bottom of the body) --><footer class="bg-gray-900 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm">
+            &copy; Food by mood.
+            <div class="mt-2 space-x-4">
+                <a href="{% url 'home' %}" class="hover:text-primary transition duration-150">Home</a>
+                <span class="text-gray-600">|</span>
+                <a href="{% url 'about' %}" class="hover:text-primary transition duration-150">About</a>
+                <span class="text-gray-600">|</span>
+                <a href="{% url 'contact' %}" class="hover:text-primary transition duration-150">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggling --><script>
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu-dropdown');
+        const navLinks = document.querySelectorAll('#mobile-menu-dropdown a');
+
+        // Function to toggle the mobile menu visibility
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Add event listener to the menu button
+        menuButton.addEventListener('click', toggleMobileMenu);
+
+        // Close the mobile menu when any link inside it is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

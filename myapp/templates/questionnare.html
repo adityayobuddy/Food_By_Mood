@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-background px-4">
+
+    <!-- The core form structure -->
+    
+    <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-2xl">
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-6 border-b pb-2">
+            Food Recommendations
+        </h1>
+        <p class="text-gray-500 mb-8">
+            Select your current state below and click "Recommend".
+        </p>
+
+        <!--
+            CRITICAL:
+            1. method="GET" ensures data is sent in the URL query string.
+            2. action="/recommend/" is the URL where your recommend_foods view is mapped.
+        -->
+        <form method="GET" action="/recommendations/" class="space-y-6">
+
+            <!-- Mood Selection -->
+            <div>
+                <label for="mood" class="block text-sm font-medium text-gray-700 mb-1">
+                    What is your mood?
+                </label>
+                <!-- IMPORTANT: name="mood" matches request.GET.get("mood") -->
+                <select id="mood" name="mood" required
+                        class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                    <option value="" disabled selected>How are you feeling today...</option>
+                    <option value="happy">Happy</option>
+                    <option value="sad">Sad</option>
+                    <option value="stressed">Stressed</option>
+                    <option value="energetic">Energetic</option>
+                    <option value="angry">Angry</option>
+                    <option value="relaxed">Relaxed</option>
+                    <option value="bored">Bored</option>
+                </select>
+            </div>
+
+            <!-- Region Selection -->
+            <div>
+                <label for="region" class="block text-sm font-medium text-gray-700 mb-1">
+                    What region are you in?
+                </label>
+                <!-- IMPORTANT: name="region" matches request.GET.get("region") -->
+                <select id="region" name="region" required
+                        class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                    <option value="" disabled selected>Select a region...</option>
+                    <option value="India">India</option>
+                    <option value="China">China</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Korea">Korea</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="USA">USA</option>
+                    <option value="France">France</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Middle East">Middle East</option>
+                    <option value="Caribbean">Caribbean</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Indonesia">Indonesia</option>>
+                    <option value="Germany">Germany</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="England">England</option>
+
+
+                </select>
+            </div>
+
+            <!-- Weather Selection -->
+            <div>
+                <label for="weather" class="block text-sm font-medium text-gray-700 mb-1">
+                    What is the weather like?
+                </label>
+                <!-- IMPORTANT: name="weather" matches request.GET.get("weather") -->
+                <select id="weather" name="weather" required
+                        class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                    <option value="" disabled selected>Select the weather...</option>
+                    <option value="sunny">Sunny</option>
+                    <option value="rainy">Rainy</option>
+                    <option value="cold">Cold</option>
+                    <option value="hot">Hot</option>
+                    <option value="cloudy">Cloudy</option>
+                    <option value="snowy">Snowy</option>
+                </select>
+            </div>
+
+            <!-- How Hungry are you? -->
+            <div>
+                <label for="hunger" class="block text-sm font-medium text-gray-700 mb-1">
+                    How Hungry are you?
+                </label>
+                <!-- IMPORTANT: name="hunger" matches request.GET.get("hungry") -->
+                <select id="hunger" name="hunger" required
+                        class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                    <option value="" disabled selected>Select the hunger type...</option>
+                    <option value="light">Light</option>
+                    <option value="heavy">Heavy</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="snacks">Snacks</option>
+                </select>
+            </div>
+
+            <!-- taste
+            <div>
+                <label for="hunger" class="block text-sm font-medium text-gray-700 mb-1">
+                    How Hungry are you?
+                </label>
+                <!-- IMPORTANT: name="hunger" matches request.GET.get("hungry") --HHHHHERE
+                <select id="hunger" name="hunger" required
+                        class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                    <option value="" disabled selected>Select the hungrr...</option>
+                    <option value="light">Light</option>
+                    <option value="heavy">Heavy</option>
+                    <option value="inbetween">In Between</option>
+                </select>
+            </div> -->
+
+            <!-- Submit Button -->
+            <button type="submit"
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-lg font-semibold text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-200 transition duration-150 ease-in-out">
+                Recommend Foods
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

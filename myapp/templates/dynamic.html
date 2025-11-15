@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}recipe{% endblock %}
+
+{% block content %}
+
+<!-- FULL PAGE BACKGROUND -->
+<div class="fixed inset-0 bg-cover bg-center blur-xl opacity-40 -z-10 transition duration-700"
+     style="background-image:url('{{ food_image_url }}');">
+</div>
+
+<!-- LIGHT OVERLAY TO IMPROVE TEXT READABILITY -->
+<div class="fixed inset-0 bg-white/40 backdrop-blur-sm -z-10"></div>
+
+
+<!-- MAIN CONTENT -->
+<div class="min-h-screen py-12 px-6 flex justify-center">
+
+    <div class="relative z-10 max-w-5xl w-full bg-white/70 backdrop-blur-xl 
+                shadow-2xl rounded-2xl p-10 border border-gray-200">
+
+        <!-- Title -->
+        <h1 class="text-4xl font-bold text-center text-rose-600 drop-shadow-sm mb-3">
+            {{ food_name }}
+        </h1>
+
+        <p class="text-center text-gray-600 text-lg mb-8">
+            A delicious dish chosen specially for your mood 😋
+        </p>
+
+        <!-- Food Image -->
+        <div class="overflow-hidden rounded-xl shadow-lg mb-10">
+            <img src="{{ food_image_url }}"
+                 alt="{{ food_name }}"
+                 class="w-full h-[30rem] object-cover transform hover:scale-105 transition duration-500">
+        </div>
+
+        <!-- Ingredients -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-5 flex items-center gap-2">
+                <span class="border-l-4 border-rose-500 pl-3">Ingredients</span>
+            </h2>
+
+            <ul class="space-y-3">
+                {% for ingredient in food_ingredients %}
+                <li class="bg-rose-50 px-4 py-3 rounded-lg shadow-sm text-gray-700 border border-rose-100">
+                    {{ ingredient }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Instructions -->
+        <div>
+            <h2 class="text-3xl font-semibold text-gray-900 mb-5 flex items-center gap-2">
+                <span class="border-l-4 border-indigo-500 pl-3">Instructions</span>
+            </h2>
+
+            <ol class="list-decimal ml-5 space-y-6 text-gray-800">
+                {% for step in food_instructions %}
+                <li class="bg-indigo-50 px-5 py-4 rounded-lg shadow-sm border border-indigo-100 leading-relaxed">
+                    {{ step }}
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <!-- Button -->
+        <div class="text-center mt-12">
+            <button id="backButton"
+               class="inline-block bg-gradient-to-r from-rose-500 to-pink-500 text-white px-8 py-3 rounded-xl 
+                      shadow-lg hover:shadow-2xl hover:scale-105 transition duration-200">
+                Back to Recommendations
+            </button>
+        </div>
+    <script>
+        document.getElementById("backButton").addEventListener("click", function() {
+            window.history.back();
+        });
+    </script>
+
+    </div>
+</div>
+
+{% endblock %}

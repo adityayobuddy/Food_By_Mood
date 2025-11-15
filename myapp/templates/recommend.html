@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Food List{% endblock %}
+
+{% block content %}
+
+
+    <section id="gallery" class="py-12">
+            <h2 class="text-4xl font-extrabold text-center mb-12 text-gray-900">Featured Mood Recipes</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for food in recommendations %}
+                <!-- Card 1: Happy Mood -->
+                
+                <!-- onclick url recipe +food.name -->
+                <div class="food-card bg-white rounded-xl shadow-xl p-4 overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]" onclick="context = '{{ food.name }}'; window.location.href='/recipe/' + context;">
+                    <img src="{{ food.image_url }}" alt="{{food.name}}" class="w-full rounded-xl h-48 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="text-xl font-semibold text-gray-900">{{food.name}}</h3>
+                        <p class="text-sm text-primary font-medium"></p>
+                    </div>
+                </div>
+                
+                {% endfor %}
+
+            </div>
+            <div class="flex justify-center mt-12">
+                <button id="loadMoreBtn" class="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition duration-300 shadow-lg hover:shadow-xl">
+                    Load More Foods
+                </button>
+            </div>
+        </section>
+
+    <script>
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            // Disable button while loading
+            const btn = this;
+            btn.disabled = true;
+            btn.textContent = 'Loading...';
+            
+            // Make request to load more foods
+            fetch('/api/load-more-foods/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.recommendations && data.recommendations.length > 0) {
+                        // Get the gallery grid
+                        const gallery = document.querySelector('.grid');
+                        
+                        // Create and append new food cards
+                        data.recommendations.forEach(food => {
+                            const foodCard = document.createElement('div');
+                            foodCard.className = 'food-card bg-white rounded-xl shadow-xl p-4 overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]';
+                            foodCard.style.cursor = 'pointer';
+                            foodCard.onclick = function() {
+                                window.location.href = '/recipe/' + food.name + '/';
+                            };
+                            foodCard.innerHTML = `
+                                <img src="${food.image_url}" alt="${food.name}" class="w-full rounded-xl h-48 object-cover">
+                                <div class="p-4 text-center">
+                                    <h3 class="text-xl font-semibold text-gray-900">${food.name}</h3>
+                                    <p class="text-sm text-primary font-medium"></p>
+                                </div>
+                            `;
+                            gallery.appendChild(foodCard);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading more foods:', error);
+                    alert('Error loading more foods. Please try again.');
+                })
+                .finally(() => {
+                    // Re-enable button
+                    btn.disabled = false;
+                    btn.textContent = 'Load More Foods';
+                });
+        });
+    </script>
+    
+{% endblock %}

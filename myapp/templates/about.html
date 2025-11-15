@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+    <section id="about" class="grid md:grid-cols-3 gap-8 py-12">
+            <!-- Feature Card 1 -->
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary/50 transition duration-300 hover:shadow-2xl">
+                <div class="text-3xl text-primary mb-4">💡</div>
+                <h2 class="text-xl font-bold mb-3">Intuitive Mood Match</h2>
+                <p class="text-gray-500">Our intelligent system uses natural language processing to suggest meals based on your current emotional state.</p>
+            </div>
+            <!-- Feature Card 2 -->
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary/50 transition duration-300 hover:shadow-2xl">
+                <div class="text-3xl text-primary mb-4">📱</div>
+                <h2 class="text-xl font-bold mb-3">Any Device, Anywhere</h2>
+                <p class="text-gray-500">Access your favorite recipes instantly, whether you're in the kitchen with your tablet or planning on the go with your phone.</p>
+            </div>
+            <!-- Feature Card 3 -->
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary/50 transition duration-300 hover:shadow-2xl">
+                <div class="text-3xl text-primary mb-4">🚀</div>
+                <h2 class="text-xl font-bold mb-3">Quick & Easy Prep</h2>
+                <p class="text-gray-500">Filter recipes by prep time, dietary needs, and ingredients you already have, making cooking stress-free.</p>
+            </div>
+        </section>
+{% endblock %}
