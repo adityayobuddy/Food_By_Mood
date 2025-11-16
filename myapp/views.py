@@ -40,8 +40,8 @@ def mood_questionnaire_view(request):
 import requests
 
 def fetch_food_image(food_name,num = 1):
-    API_KEY = "AIzaSyC3FzrSm82NIajI3kfeltDGn2K29QCfwPY"
-    CX = "76e295946120a424d"
+    API_KEY = "Your API Key"
+    CX = "Your CX Key"
     url = f"https://www.googleapis.com/customsearch/v1?key={API_KEY}&cx={CX}&q={food_name}&searchType=image&num={num}"
 
     print(url)
