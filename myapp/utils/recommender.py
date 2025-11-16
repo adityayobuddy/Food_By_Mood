@@ -68,7 +68,7 @@ set_llm_cache(SQLiteCache("llm_cache.db"))
 print("LLM Caching Enabled.")
 
 # Global model instance
-llm = ChatGoogleGenerativeAI(api_key="AIzaSyDbpWap96tJpC9CGBaqfo3XZf2Fm1IYzPk" ,model="gemini-2.5-flash-lite", temperature=0.5 , max_tokens=1000)
+llm = ChatGoogleGenerativeAI(api_key="Your API Key" ,model="gemini-2.5-flash-lite", temperature=0.5 , max_tokens=1000)
 parser = JsonOutputParser()
 
 
